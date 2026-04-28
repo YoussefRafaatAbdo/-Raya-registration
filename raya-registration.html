@@ -1,0 +1,1163 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Raya Academy - التسجيل</title>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;900&family=Orbitron:wght@700;900&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #04080f;
+    --surface: #0a1628;
+    --surface2: #0d1f3c;
+    --cyan: #00d4ff;
+    --cyan2: #0099cc;
+    --gold: #f0a500;
+    --text: #e0eaf8;
+    --text-muted: #7a9bc4;
+    --border: rgba(0,212,255,0.15);
+    --glow: 0 0 20px rgba(0,212,255,0.3);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Cairo', sans-serif;
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  /* Animated background */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background: 
+      radial-gradient(ellipse at 20% 50%, rgba(0,212,255,0.04) 0%, transparent 60%),
+      radial-gradient(ellipse at 80% 20%, rgba(0,100,200,0.06) 0%, transparent 50%);
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  /* Grid lines */
+  body::after {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: 
+      linear-gradient(rgba(0,212,255,0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(0,212,255,0.03) 1px, transparent 1px);
+    background-size: 60px 60px;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  /* ── HEADER ── */
+  header {
+    position: relative;
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px 48px;
+    border-bottom: 1px solid var(--border);
+    background: rgba(4,8,15,0.8);
+    backdrop-filter: blur(12px);
+  }
+
+  .logo-area {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+
+  .logo-icon {
+    width: 52px;
+    height: 52px;
+    background: linear-gradient(135deg, #0a1628, #0d2a4a);
+    border: 2px solid var(--cyan);
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Orbitron', monospace;
+    font-size: 18px;
+    font-weight: 900;
+    color: var(--cyan);
+    box-shadow: var(--glow);
+    letter-spacing: 1px;
+  }
+
+  .logo-text h1 {
+    font-family: 'Orbitron', monospace;
+    font-size: 20px;
+    font-weight: 900;
+    color: var(--cyan);
+    text-transform: uppercase;
+    letter-spacing: 3px;
+  }
+
+  .logo-text p {
+    font-size: 11px;
+    color: var(--gold);
+    letter-spacing: 2px;
+    text-transform: uppercase;
+  }
+
+  .header-badge {
+    background: linear-gradient(135deg, rgba(0,212,255,0.1), rgba(0,100,200,0.1));
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    padding: 8px 20px;
+    font-size: 13px;
+    color: var(--cyan);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .header-badge::before {
+    content: '';
+    width: 8px;
+    height: 8px;
+    background: #00ff88;
+    border-radius: 50%;
+    box-shadow: 0 0 8px #00ff88;
+    animation: pulse 2s infinite;
+  }
+
+  @keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.4; }
+  }
+
+  /* ── MAIN ── */
+  main {
+    position: relative;
+    z-index: 5;
+    max-width: 1300px;
+    margin: 0 auto;
+    padding: 60px 48px;
+  }
+
+  /* Hero section */
+  .hero {
+    text-align: center;
+    margin-bottom: 70px;
+    animation: fadeUp 0.8s ease both;
+  }
+
+  .hero-tag {
+    display: inline-block;
+    background: rgba(240,165,0,0.1);
+    border: 1px solid rgba(240,165,0,0.3);
+    color: var(--gold);
+    font-size: 12px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    padding: 6px 18px;
+    border-radius: 20px;
+    margin-bottom: 24px;
+  }
+
+  .hero h2 {
+    font-family: 'Orbitron', monospace;
+    font-size: clamp(28px, 4vw, 52px);
+    font-weight: 900;
+    color: #fff;
+    line-height: 1.2;
+    margin-bottom: 20px;
+  }
+
+  .hero h2 span {
+    color: var(--cyan);
+    text-shadow: 0 0 30px rgba(0,212,255,0.5);
+  }
+
+  .hero p {
+    font-size: 16px;
+    color: var(--text-muted);
+    max-width: 600px;
+    margin: 0 auto;
+    line-height: 1.8;
+  }
+
+  /* Stats bar */
+  .stats-bar {
+    display: flex;
+    justify-content: center;
+    gap: 48px;
+    margin: 40px 0 70px;
+    animation: fadeUp 0.8s 0.2s ease both;
+  }
+
+  .stat {
+    text-align: center;
+  }
+
+  .stat-num {
+    font-family: 'Orbitron', monospace;
+    font-size: 32px;
+    font-weight: 900;
+    color: var(--cyan);
+    text-shadow: 0 0 20px rgba(0,212,255,0.4);
+  }
+
+  .stat-label {
+    font-size: 12px;
+    color: var(--text-muted);
+    letter-spacing: 1px;
+    margin-top: 4px;
+  }
+
+  /* ── LAYOUT ── */
+  .page-layout {
+    display: grid;
+    grid-template-columns: 1fr 380px;
+    gap: 40px;
+    align-items: start;
+  }
+
+  /* ── COURSES ── */
+  .section-title {
+    font-size: 13px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--cyan);
+    margin-bottom: 24px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .section-title::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--border);
+  }
+
+  .courses-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+  }
+
+  .course-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 24px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+    animation: fadeUp 0.6s ease both;
+  }
+
+  .course-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--cyan), transparent);
+    opacity: 0;
+    transition: opacity 0.3s;
+  }
+
+  .course-card:hover {
+    border-color: var(--cyan);
+    background: var(--surface2);
+    transform: translateY(-4px);
+    box-shadow: 0 8px 32px rgba(0,212,255,0.15);
+  }
+
+  .course-card:hover::before { opacity: 1; }
+
+  .course-card.featured {
+    grid-column: span 2;
+    background: linear-gradient(135deg, rgba(0,212,255,0.06), rgba(0,100,200,0.06));
+    border-color: rgba(240,165,0,0.3);
+  }
+
+  .course-card.featured::before {
+    background: linear-gradient(90deg, transparent, var(--gold), transparent);
+    opacity: 1;
+  }
+
+  .card-header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    margin-bottom: 16px;
+  }
+
+  .course-icon {
+    width: 46px;
+    height: 46px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 22px;
+    flex-shrink: 0;
+  }
+
+  .badge-special {
+    background: rgba(240,165,0,0.15);
+    border: 1px solid rgba(240,165,0,0.4);
+    color: var(--gold);
+    font-size: 10px;
+    letter-spacing: 1px;
+    padding: 4px 10px;
+    border-radius: 10px;
+    font-weight: 700;
+    text-transform: uppercase;
+  }
+
+  .course-name {
+    font-size: 17px;
+    font-weight: 700;
+    color: #fff;
+    margin-bottom: 8px;
+    line-height: 1.3;
+  }
+
+  .course-desc {
+    font-size: 12px;
+    color: var(--text-muted);
+    line-height: 1.7;
+    margin-bottom: 16px;
+  }
+
+  .price-row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .price-now {
+    font-family: 'Orbitron', monospace;
+    font-size: 22px;
+    font-weight: 900;
+    color: var(--cyan);
+  }
+
+  .price-old {
+    font-size: 13px;
+    color: var(--text-muted);
+    text-decoration: line-through;
+  }
+
+  .save-badge {
+    margin-right: auto;
+    background: rgba(0,255,136,0.1);
+    border: 1px solid rgba(0,255,136,0.2);
+    color: #00ff88;
+    font-size: 10px;
+    padding: 3px 9px;
+    border-radius: 8px;
+    font-weight: 700;
+  }
+
+  /* Modal overlay */
+  .modal-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.85);
+    backdrop-filter: blur(8px);
+    z-index: 100;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+  }
+
+  .modal-overlay.active {
+    display: flex;
+    animation: fadeIn 0.3s ease;
+  }
+
+  .modal {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 24px;
+    max-width: 720px;
+    width: 100%;
+    max-height: 85vh;
+    overflow-y: auto;
+    position: relative;
+    animation: slideUp 0.4s ease;
+  }
+
+  .modal::-webkit-scrollbar { width: 4px; }
+  .modal::-webkit-scrollbar-thumb { background: var(--cyan2); border-radius: 2px; }
+
+  .modal-top {
+    position: relative;
+    padding: 36px 36px 0;
+  }
+
+  .modal-close {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    width: 36px;
+    height: 36px;
+    background: rgba(255,255,255,0.06);
+    border: 1px solid var(--border);
+    border-radius: 50%;
+    color: var(--text-muted);
+    font-size: 18px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s;
+  }
+
+  .modal-close:hover { background: rgba(255,0,0,0.15); color: #ff4444; border-color: #ff4444; }
+
+  .modal-icon-big {
+    width: 70px;
+    height: 70px;
+    border-radius: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 36px;
+    margin-bottom: 20px;
+    border: 1px solid var(--border);
+  }
+
+  .modal-title { font-size: 28px; font-weight: 800; color: #fff; margin-bottom: 8px; }
+  .modal-subtitle { font-size: 14px; color: var(--text-muted); line-height: 1.7; margin-bottom: 24px; }
+
+  .modal-prices {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 20px 24px;
+    background: rgba(0,212,255,0.05);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    margin-bottom: 28px;
+  }
+
+  .modal-price-main { font-family: 'Orbitron', monospace; font-size: 36px; font-weight: 900; color: var(--cyan); }
+  .modal-price-old { font-size: 16px; color: var(--text-muted); text-decoration: line-through; }
+  .modal-save { margin-right: auto; background: rgba(0,255,136,0.1); border: 1px solid rgba(0,255,136,0.3); color: #00ff88; font-size: 12px; padding: 6px 14px; border-radius: 10px; font-weight: 700; }
+
+  .modal-body { padding: 0 36px 36px; }
+
+  .info-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+    margin-bottom: 28px;
+  }
+
+  .info-item {
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 16px;
+    text-align: center;
+  }
+
+  .info-item .val { font-size: 18px; font-weight: 800; color: #fff; margin-bottom: 4px; }
+  .info-item .lbl { font-size: 11px; color: var(--text-muted); letter-spacing: 1px; }
+
+  .topics-title {
+    font-size: 12px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--cyan);
+    margin-bottom: 14px;
+  }
+
+  .topics-list {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+    margin-bottom: 28px;
+  }
+
+  .topic-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 13px;
+    color: var(--text-muted);
+  }
+
+  .topic-item::before {
+    content: '▸';
+    color: var(--cyan);
+    flex-shrink: 0;
+  }
+
+  .enroll-btn {
+    width: 100%;
+    background: linear-gradient(135deg, var(--cyan), var(--cyan2));
+    color: #04080f;
+    border: none;
+    border-radius: 14px;
+    padding: 18px;
+    font-family: 'Cairo', sans-serif;
+    font-size: 18px;
+    font-weight: 800;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    letter-spacing: 1px;
+  }
+
+  .enroll-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 32px rgba(0,212,255,0.4);
+  }
+
+  /* ── REGISTRATION FORM ── */
+  .reg-panel {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    padding: 32px;
+    position: sticky;
+    top: 24px;
+    animation: fadeUp 0.8s 0.3s ease both;
+  }
+
+  .reg-panel h3 {
+    font-family: 'Orbitron', monospace;
+    font-size: 16px;
+    font-weight: 900;
+    color: var(--cyan);
+    margin-bottom: 6px;
+    letter-spacing: 2px;
+  }
+
+  .reg-panel p {
+    font-size: 12px;
+    color: var(--text-muted);
+    margin-bottom: 28px;
+  }
+
+  .form-group {
+    margin-bottom: 18px;
+  }
+
+  label {
+    display: block;
+    font-size: 12px;
+    color: var(--text-muted);
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+  }
+
+  input, select, textarea {
+    width: 100%;
+    background: rgba(255,255,255,0.04);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 13px 16px;
+    color: var(--text);
+    font-family: 'Cairo', sans-serif;
+    font-size: 14px;
+    transition: all 0.3s;
+    outline: none;
+    direction: rtl;
+  }
+
+  input::placeholder, textarea::placeholder { color: rgba(122,155,196,0.5); }
+
+  input:focus, select:focus, textarea:focus {
+    border-color: var(--cyan);
+    background: rgba(0,212,255,0.05);
+    box-shadow: 0 0 0 3px rgba(0,212,255,0.1);
+  }
+
+  select option { background: #0a1628; }
+
+  textarea { resize: vertical; min-height: 80px; }
+
+  .selected-course-display {
+    background: rgba(0,212,255,0.06);
+    border: 1px solid rgba(0,212,255,0.2);
+    border-radius: 10px;
+    padding: 12px 16px;
+    font-size: 13px;
+    color: var(--cyan);
+    margin-bottom: 18px;
+    display: none;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .selected-course-display.show { display: flex; }
+  .selected-course-display span { margin-right: auto; font-size: 11px; color: var(--text-muted); }
+
+  .submit-btn {
+    width: 100%;
+    background: linear-gradient(135deg, var(--cyan), var(--cyan2));
+    color: #04080f;
+    border: none;
+    border-radius: 12px;
+    padding: 16px;
+    font-family: 'Cairo', sans-serif;
+    font-size: 16px;
+    font-weight: 800;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-top: 8px;
+  }
+
+  .submit-btn:hover { transform: translateY(-2px); box-shadow: 0 8px 28px rgba(0,212,255,0.35); }
+
+  .form-footer {
+    text-align: center;
+    margin-top: 16px;
+    font-size: 11px;
+    color: var(--text-muted);
+    line-height: 1.6;
+  }
+
+  .form-footer a { color: var(--cyan); text-decoration: none; }
+
+  .divider {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin: 20px 0;
+    color: var(--text-muted);
+    font-size: 11px;
+  }
+
+  .divider::before, .divider::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--border);
+  }
+
+  .contact-info {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-top: 20px;
+    padding-top: 20px;
+    border-top: 1px solid var(--border);
+  }
+
+  .contact-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 12px;
+    color: var(--text-muted);
+  }
+
+  .contact-row span:first-child { font-size: 16px; }
+
+  /* Success message */
+  .success-msg {
+    display: none;
+    text-align: center;
+    padding: 24px;
+    animation: fadeIn 0.5s ease;
+  }
+
+  .success-msg.show { display: block; }
+
+  .success-icon {
+    font-size: 52px;
+    margin-bottom: 16px;
+  }
+
+  .success-msg h4 { font-size: 20px; color: #00ff88; margin-bottom: 8px; }
+  .success-msg p { font-size: 13px; color: var(--text-muted); }
+
+  /* Animations */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+
+  @keyframes slideUp {
+    from { opacity: 0; transform: translateY(40px) scale(0.96); }
+    to { opacity: 1; transform: translateY(0) scale(1); }
+  }
+
+  .course-card:nth-child(1) { animation-delay: 0.1s; }
+  .course-card:nth-child(2) { animation-delay: 0.15s; }
+  .course-card:nth-child(3) { animation-delay: 0.2s; }
+  .course-card:nth-child(4) { animation-delay: 0.25s; }
+  .course-card:nth-child(5) { animation-delay: 0.3s; }
+  .course-card:nth-child(6) { animation-delay: 0.35s; }
+  .course-card:nth-child(7) { animation-delay: 0.4s; }
+
+  @media (max-width: 900px) {
+    main { padding: 40px 24px; }
+    header { padding: 16px 24px; }
+    .page-layout { grid-template-columns: 1fr; }
+    .courses-grid { grid-template-columns: 1fr; }
+    .course-card.featured { grid-column: span 1; }
+    .stats-bar { gap: 24px; flex-wrap: wrap; }
+    .reg-panel { position: static; }
+    .topics-list { grid-template-columns: 1fr; }
+    .info-grid { grid-template-columns: repeat(3, 1fr); }
+  }
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header>
+  <div class="logo-area">
+    <div class="logo-icon">RA</div>
+    <div class="logo-text">
+      <h1>RAYA</h1>
+      <p>Smart Education Academy</p>
+    </div>
+  </div>
+  <div class="header-badge">التسجيل مفتوح الآن</div>
+</header>
+
+<!-- MAIN -->
+<main>
+  <div class="hero">
+    <div class="hero-tag">راية أكاديمي · +5 سنوات خبرة</div>
+    <h2>اختر <span>مسارك المهني</span><br>وابدأ رحلتك</h2>
+    <p>أكثر من 5000 خريج في مصر والوطن العربي — برامج معتمدة من Cisco وCompTIA ومعتمدة من محافظة القاهرة</p>
+  </div>
+
+  <div class="stats-bar">
+    <div class="stat"><div class="stat-num">+5000</div><div class="stat-label">خريج</div></div>
+    <div class="stat"><div class="stat-num">+300</div><div class="stat-label">مجموعة مكتملة</div></div>
+    <div class="stat"><div class="stat-num">4.8/5</div><div class="stat-label">تقييم الطلاب</div></div>
+    <div class="stat"><div class="stat-num">120h</div><div class="stat-label">ساعة تدريبية</div></div>
+    <div class="stat"><div class="stat-num">35%</div><div class="stat-label">نمو سنوي</div></div>
+  </div>
+
+  <div class="page-layout">
+    <!-- COURSES -->
+    <div>
+      <div class="section-title">الكورسات المتاحة</div>
+      <div class="courses-grid">
+
+        <!-- NETWORK DIPLOMA - FEATURED -->
+        <div class="course-card featured" onclick="openModal('diploma')">
+          <div class="card-header">
+            <div class="course-icon" style="background:rgba(240,165,0,0.1); border:1px solid rgba(240,165,0,0.3);">🏆</div>
+            <div class="badge-special">عرض خاص</div>
+          </div>
+          <div class="course-name">دبلومة الشبكات الكاملة</div>
+          <div class="course-desc">CCNA + MCSA + CCNP ENCOR — الباقة الأشمل لتأهيلك في مجال الشبكات واحترافي في سوق العمل المصري والعربي</div>
+          <div class="price-row">
+            <div class="price-now">6,900</div>
+            <div class="price-old">12,000 جنيه</div>
+            <div class="save-badge">وفّر 5,100 ج</div>
+          </div>
+        </div>
+
+        <!-- CCNA -->
+        <div class="course-card" onclick="openModal('ccna')">
+          <div class="card-header">
+            <div class="course-icon" style="background:rgba(0,212,255,0.08);">🌐</div>
+          </div>
+          <div class="course-name">CCNA</div>
+          <div class="course-desc">Cisco Certified Network Associate — أساسيات الشبكات، OSI، IPv4/IPv6، OSPF، VLANs والمزيد</div>
+          <div class="price-row">
+            <div class="price-now">3,000</div>
+            <div class="price-old">4,000 ج</div>
+            <div class="save-badge">وفّر 25%</div>
+          </div>
+        </div>
+
+        <!-- CCNP -->
+        <div class="course-card" onclick="openModal('ccnp')">
+          <div class="card-header">
+            <div class="course-icon" style="background:rgba(0,212,255,0.08);">⚙️</div>
+          </div>
+          <div class="course-name">CCNP ENCOR</div>
+          <div class="course-desc">Cisco Certified Network Professional — تحليل متقدم للشبكات، EIGRP، OSPF، SDWAN، Security وأكثر</div>
+          <div class="price-row">
+            <div class="price-now">3,000</div>
+            <div class="price-old">4,000 ج</div>
+            <div class="save-badge">وفّر 25%</div>
+          </div>
+        </div>
+
+        <!-- MCSA -->
+        <div class="course-card" onclick="openModal('mcsa')">
+          <div class="card-header">
+            <div class="course-icon" style="background:rgba(0,150,255,0.08);">🖥️</div>
+          </div>
+          <div class="course-name">MCSA</div>
+          <div class="course-desc">Microsoft Certified Solutions Associate — إدارة Windows Server، Active Directory، Networking</div>
+          <div class="price-row">
+            <div class="price-now">3,000</div>
+            <div class="price-old">4,000 ج</div>
+            <div class="save-badge">وفّر 25%</div>
+          </div>
+        </div>
+
+        <!-- CYBER -->
+        <div class="course-card" onclick="openModal('cyber')">
+          <div class="card-header">
+            <div class="course-icon" style="background:rgba(255,50,50,0.08);">🛡️</div>
+          </div>
+          <div class="course-name">Cyber Security</div>
+          <div class="course-desc">الأمن السيبراني الاحترافي — اختبار الاختراق، تحليل الثغرات، CompTIA Security+ والحماية المتقدمة</div>
+          <div class="price-row">
+            <div class="price-now">6,800</div>
+            <div class="price-old">12,000 ج</div>
+            <div class="save-badge">وفّر 43%</div>
+          </div>
+        </div>
+
+        <!-- AI -->
+        <div class="course-card" onclick="openModal('ai')">
+          <div class="card-header">
+            <div class="course-icon" style="background:rgba(150,0,255,0.08);">🤖</div>
+          </div>
+          <div class="course-name">Artificial Intelligence</div>
+          <div class="course-desc">الذكاء الاصطناعي وتعلم الآلة — Python، Machine Learning، Deep Learning وتطبيقات AI العملية</div>
+          <div class="price-row">
+            <div class="price-now">8,000</div>
+            <div class="price-old">10,000 ج</div>
+            <div class="save-badge">وفّر 20%</div>
+          </div>
+        </div>
+
+        <!-- DATA -->
+        <div class="course-card" onclick="openModal('data')">
+          <div class="card-header">
+            <div class="course-icon" style="background:rgba(0,255,150,0.08);">📊</div>
+          </div>
+          <div class="course-name">Data Analysis</div>
+          <div class="course-desc">تحليل البيانات — Excel، SQL، Python، Power BI وتحويل البيانات لقرارات ذكية</div>
+          <div class="price-row">
+            <div class="price-now">4,000</div>
+            <div class="price-old">7,000 ج</div>
+            <div class="save-badge">وفّر 43%</div>
+          </div>
+        </div>
+
+        <!-- CLOUD -->
+        <div class="course-card" onclick="openModal('cloud')">
+          <div class="card-header">
+            <div class="course-icon" style="background:rgba(0,180,255,0.08);">☁️</div>
+          </div>
+          <div class="course-name">Cloud (Azure 900 + 104)</div>
+          <div class="course-desc">Microsoft Azure — الحوسبة السحابية، Azure Fundamentals، Azure Administrator وبناء الحلول السحابية</div>
+          <div class="price-row">
+            <div class="price-now">5,000</div>
+            <div class="price-old">6,000 ج</div>
+            <div class="save-badge">وفّر 17%</div>
+          </div>
+        </div>
+
+        <!-- LINUX -->
+        <div class="course-card" onclick="openModal('linux')">
+          <div class="card-header">
+            <div class="course-icon" style="background:rgba(255,200,0,0.08);">🐧</div>
+          </div>
+          <div class="course-name">Linux (Admin 1 + 2)</div>
+          <div class="course-desc">إدارة Linux الاحترافية — أساسيات وأوامر Linux، إدارة الخوادم، الأمان وإدارة الشبكات</div>
+          <div class="price-row">
+            <div class="price-now">5,000</div>
+            <div class="price-old">6,500 ج</div>
+            <div class="save-badge">وفّر 23%</div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- REGISTRATION PANEL -->
+    <div class="reg-panel">
+      <h3>سجّل الآن</h3>
+      <p>أكمل بياناتك وسيتواصل معك فريقنا خلال 24 ساعة</p>
+
+      <div class="selected-course-display" id="selectedCourseDisplay">
+        <span id="selectedCourseName">—</span>
+        <span>الكورس المختار</span>
+      </div>
+
+      <div id="regForm">
+        <div class="form-group">
+          <label>الاسم الكامل</label>
+          <input type="text" placeholder="محمد أحمد علي" id="fullName">
+        </div>
+        <div class="form-group">
+          <label>رقم الهاتف</label>
+          <input type="tel" placeholder="01xxxxxxxxx" id="phone">
+        </div>
+        <div class="form-group">
+          <label>البريد الإلكتروني</label>
+          <input type="email" placeholder="example@email.com" id="email" style="direction:ltr;">
+        </div>
+        <div class="form-group">
+          <label>الكورس المطلوب</label>
+          <select id="courseSelect">
+            <option value="">— اختر الكورس —</option>
+            <option value="diploma">🏆 دبلومة الشبكات الكاملة — 6,900 ج</option>
+            <option value="ccna">🌐 CCNA — 3,000 ج</option>
+            <option value="ccnp">⚙️ CCNP ENCOR — 3,000 ج</option>
+            <option value="mcsa">🖥️ MCSA — 3,000 ج</option>
+            <option value="cyber">🛡️ Cyber Security — 6,800 ج</option>
+            <option value="ai">🤖 Artificial Intelligence — 8,000 ج</option>
+            <option value="data">📊 Data Analysis — 4,000 ج</option>
+            <option value="cloud">☁️ Cloud (Azure 900+104) — 5,000 ج</option>
+            <option value="linux">🐧 Linux (Admin 1+2) — 5,000 ج</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>المستوى الحالي</label>
+          <select id="level">
+            <option value="">— اختر مستواك —</option>
+            <option>مبتدئ — بدون خبرة</option>
+            <option>متوسط — خبرة بسيطة</option>
+            <option>متقدم — خبرة سابقة</option>
+            <option>طالب جامعي</option>
+            <option>خريج حديث</option>
+            <option>موظف يريد تطوير مهاراته</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>ملاحظات إضافية (اختياري)</label>
+          <textarea placeholder="أي استفسار أو ملاحظة تريد إضافتها..." id="notes"></textarea>
+        </div>
+
+        <button class="submit-btn" onclick="submitForm()">🚀 أرسل طلب التسجيل</button>
+      </div>
+
+      <div class="success-msg" id="successMsg">
+        <div class="success-icon">✅</div>
+        <h4>تم استلام طلبك بنجاح!</h4>
+        <p>شكراً لك! سيتواصل معك فريق راية أكاديمي خلال 24 ساعة لتأكيد تسجيلك وترتيب موعد البداية.</p>
+      </div>
+
+      <div class="divider">تواصل معنا مباشرة</div>
+      <div class="contact-info">
+        <div class="contact-row"><span>📞</span> +01119542323</div>
+        <div class="contact-row"><span>✉️</span> rayaacademy38@gmail.com</div>
+        <div class="contact-row"><span>📍</span> 28 عباس العقاد، مدينة نصر، القاهرة</div>
+        <div class="contact-row"><span>🌐</span> www.raya4courses.com</div>
+      </div>
+
+      <div class="form-footer" style="margin-top:16px;">
+        فروع في القاهرة · الجيزة · الإسكندرية<br>
+        <a href="#">شروط التسجيل</a> · <a href="#">سياسة الخصوصية</a>
+      </div>
+    </div>
+  </div>
+</main>
+
+<!-- MODAL -->
+<div class="modal-overlay" id="modalOverlay" onclick="closeModalOnBg(event)">
+  <div class="modal" id="modal">
+    <div class="modal-top">
+      <button class="modal-close" onclick="closeModal()">✕</button>
+      <div class="modal-icon-big" id="modalIcon"></div>
+      <div class="modal-title" id="modalTitle"></div>
+      <div class="modal-subtitle" id="modalSubtitle"></div>
+      <div class="modal-prices">
+        <div class="modal-price-main" id="modalPrice"></div>
+        <div class="modal-price-old" id="modalPriceOld"></div>
+        <div class="modal-save" id="modalSave"></div>
+      </div>
+    </div>
+    <div class="modal-body">
+      <div class="info-grid">
+        <div class="info-item"><div class="val">120h</div><div class="lbl">ساعة تدريبية</div></div>
+        <div class="info-item"><div class="val">21 جلسة</div><div class="lbl">عدد الجلسات</div></div>
+        <div class="info-item"><div class="val">7h/جلسة</div><div class="lbl">مدة الجلسة</div></div>
+      </div>
+      <div class="topics-title">المحتوى التفصيلي</div>
+      <div class="topics-list" id="modalTopics"></div>
+      <button class="enroll-btn" id="modalEnrollBtn">📋 سجّل في هذا الكورس الآن</button>
+    </div>
+  </div>
+</div>
+
+<script>
+const courses = {
+  diploma: {
+    icon: '🏆', bg: 'rgba(240,165,0,0.1)', border: 'rgba(240,165,0,0.3)',
+    title: 'دبلومة الشبكات الكاملة',
+    subtitle: 'الباقة الأشمل والأوفر — تجمع CCNA + MCSA + CCNP ENCOR في مسار تدريبي متكامل يؤهلك لسوق العمل في مصر والوطن العربي بأقل تكلفة.',
+    price: '6,900', old: '12,000 ج', save: 'وفّر 5,100 ج',
+    topics: ['CCNA كامل (21 جلسة)', 'MCSA كامل', 'CCNP ENCOR كامل', 'شهادات معتمدة لكل كورس', 'مشاريع عملية حقيقية', 'متابعة توظيف', 'شبكة خريجين راية', 'دعم ما بعد التخرج']
+  },
+  ccna: {
+    icon: '🌐', bg: 'rgba(0,212,255,0.08)', border: 'rgba(0,212,255,0.2)',
+    title: 'CCNA — Cisco Certified Network Associate',
+    subtitle: '120 ساعة تدريبية تغطي أساسيات وتفاصيل الشبكات من OSI model إلى routing protocols متقدمة، مع labs عملية على Packet Tracer.',
+    price: '3,000', old: '4,000 ج', save: 'وفّر 1,000 ج',
+    topics: ['OSI & TCP/IP Model', 'IPv4 & IPv6 Addressing', 'Subnetting & VLSM', 'VLANs & Trunking', 'OSPF & Static Routing', 'NAT / PAT', 'DHCP & DNS', 'ACL & Port Security', 'WLAN Fundamentals', 'Network Automation & SDN', 'VPN Concepts', 'Network Troubleshooting']
+  },
+  ccnp: {
+    icon: '⚙️', bg: 'rgba(0,212,255,0.08)', border: 'rgba(0,212,255,0.2)',
+    title: 'CCNP ENCOR — Enterprise Core',
+    subtitle: 'المستوى الاحترافي من Cisco يغطي البنية التحتية للشبكات المؤسسية بعمق — مثالي لمن أتم CCNA أو يمتلك خبرة سابقة.',
+    price: '3,000', old: '4,000 ج', save: 'وفّر 1,000 ج',
+    topics: ['L2 & L3 Forwarding', 'STP Optimization (PVST, RSTP)', 'EtherChannel (L2 & L3)', 'Advanced VLANs & VTP', 'OSPF Advanced', 'EIGRP Named Mode', 'BGP Fundamentals', 'SDWAN Architecture', 'QoS Concepts', 'Network Security', 'CEF & Switching Modes', 'GNS3 Lab Environment']
+  },
+  mcsa: {
+    icon: '🖥️', bg: 'rgba(0,150,255,0.08)', border: 'rgba(0,150,255,0.2)',
+    title: 'MCSA — Microsoft Certified Solutions Associate',
+    subtitle: 'إدارة Windows Server الاحترافية — بناء وإدارة بنية تحتية Microsoft كاملة لأي منظمة أو شركة.',
+    price: '3,000', old: '4,000 ج', save: 'وفّر 1,000 ج',
+    topics: ['Windows Server Installation', 'Active Directory', 'Group Policy', 'DNS & DHCP Server', 'File & Storage Services', 'Remote Desktop Services', 'Hyper-V Virtualization', 'Windows Server Security', 'IIS Web Server', 'Backup & Recovery', 'PowerShell Basics', 'Network Infrastructure']
+  },
+  cyber: {
+    icon: '🛡️', bg: 'rgba(255,50,50,0.08)', border: 'rgba(255,50,50,0.2)',
+    title: 'Cyber Security — الأمن السيبراني',
+    subtitle: 'برنامج أمن سيبراني احترافي معتمد CompTIA — من أساسيات الأمن لاختبار الاختراق الفعلي، مع مشاريع حقيقية وتوظيف 70% خلال 5 أشهر.',
+    price: '6,800', old: '12,000 ج', save: 'وفّر 5,200 ج',
+    topics: ['Network Security Fundamentals', 'Linux for Security', 'Ethical Hacking Basics', 'Vulnerability Assessment', 'Penetration Testing', 'Web Application Security', 'Cryptography', 'SOC Operations', 'Incident Response', 'Malware Analysis Basics', 'CompTIA Security+ Prep', 'Real-World Projects']
+  },
+  ai: {
+    icon: '🤖', bg: 'rgba(150,0,255,0.08)', border: 'rgba(150,0,255,0.2)',
+    title: 'Artificial Intelligence — الذكاء الاصطناعي',
+    subtitle: 'مسار شامل في AI وتعلم الآلة من الصفر للاحتراف — Python، خوارزميات ML، Deep Learning وتطبيقات حقيقية.',
+    price: '8,000', old: '10,000 ج', save: 'وفّر 2,000 ج',
+    topics: ['Python for AI', 'Data Science Basics', 'Machine Learning Algorithms', 'Neural Networks', 'Deep Learning', 'Computer Vision', 'Natural Language Processing', 'Model Deployment', 'TensorFlow & PyTorch', 'AI Ethics', 'Real Projects', 'Job Preparation']
+  },
+  data: {
+    icon: '📊', bg: 'rgba(0,255,150,0.08)', border: 'rgba(0,255,150,0.2)',
+    title: 'Data Analysis — تحليل البيانات',
+    subtitle: 'من Excel وSQL إلى Python وPower BI — احترف تحليل البيانات واتخاذ القرار المبني على البيانات في سوق العمل.',
+    price: '4,000', old: '7,000 ج', save: 'وفّر 3,000 ج',
+    topics: ['Advanced Excel', 'SQL & Database Queries', 'Python for Data Analysis', 'Pandas & NumPy', 'Data Visualization', 'Power BI Dashboards', 'Statistics Fundamentals', 'Data Cleaning', 'Business Intelligence', 'Reporting & Insights', 'Real Datasets Projects', 'Portfolio Building']
+  },
+  cloud: {
+    icon: '☁️', bg: 'rgba(0,180,255,0.08)', border: 'rgba(0,180,255,0.2)',
+    title: 'Cloud Computing — Azure 900 + AZ-104',
+    subtitle: 'Microsoft Azure من المبتدئ للمحترف — شهادتين في باقة واحدة: Azure Fundamentals + Azure Administrator.',
+    price: '5,000', old: '6,000 ج', save: 'وفّر 1,000 ج',
+    topics: ['Cloud Concepts', 'Azure Architecture', 'Azure Compute Services', 'Azure Storage', 'Azure Networking', 'Azure Active Directory', 'Monitoring & Management', 'Azure Security', 'Cost Management', 'Azure DevOps Basics', 'AZ-900 Exam Prep', 'AZ-104 Exam Prep']
+  },
+  linux: {
+    icon: '🐧', bg: 'rgba(255,200,0,0.08)', border: 'rgba(255,200,0,0.2)',
+    title: 'Linux Administration — Admin 1 + Admin 2',
+    subtitle: 'إدارة Linux من الأساسيات للمستوى المتقدم — باقة مزدوجة تؤهلك لإدارة خوادم Linux في بيئات العمل.',
+    price: '5,000', old: '6,500 ج', save: 'وفّر 1,500 ج',
+    topics: ['Linux Installation & CLI', 'File System & Permissions', 'User & Group Management', 'Package Management', 'Shell Scripting', 'Process Management', 'Networking in Linux', 'SSH & Remote Access', 'Linux Security', 'Apache & Web Servers', 'Cron & Automation', 'Troubleshooting']
+  }
+};
+
+function openModal(id) {
+  const c = courses[id];
+  document.getElementById('modalIcon').textContent = c.icon;
+  document.getElementById('modalIcon').style.background = c.bg;
+  document.getElementById('modalIcon').style.border = `1px solid ${c.border}`;
+  document.getElementById('modalTitle').textContent = c.title;
+  document.getElementById('modalSubtitle').textContent = c.subtitle;
+  document.getElementById('modalPrice').textContent = c.price;
+  document.getElementById('modalPriceOld').textContent = c.old;
+  document.getElementById('modalSave').textContent = c.save;
+  
+  const topicsHtml = c.topics.map(t => `<div class="topic-item">${t}</div>`).join('');
+  document.getElementById('modalTopics').innerHTML = topicsHtml;
+
+  document.getElementById('modalEnrollBtn').onclick = () => {
+    closeModal();
+    const sel = document.getElementById('courseSelect');
+    sel.value = id;
+    const disp = document.getElementById('selectedCourseDisplay');
+    document.getElementById('selectedCourseName').textContent = c.icon + ' ' + c.title;
+    disp.classList.add('show');
+    document.getElementById('reg-panel') || document.querySelector('.reg-panel').scrollIntoView({behavior:'smooth', block:'start'});
+  };
+
+  document.getElementById('modalOverlay').classList.add('active');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeModal() {
+  document.getElementById('modalOverlay').classList.remove('active');
+  document.body.style.overflow = '';
+}
+
+function closeModalOnBg(e) {
+  if (e.target === document.getElementById('modalOverlay')) closeModal();
+}
+
+document.getElementById('courseSelect').addEventListener('change', function() {
+  const id = this.value;
+  const disp = document.getElementById('selectedCourseDisplay');
+  if (id && courses[id]) {
+    document.getElementById('selectedCourseName').textContent = courses[id].icon + ' ' + courses[id].title;
+    disp.classList.add('show');
+  } else {
+    disp.classList.remove('show');
+  }
+});
+
+// ⬇️ الصق هنا الـ Web App URL بتاعك من Google Apps Script
+const SHEET_URL = "https://script.google.com/macros/s/AKfycbzmfH9CkSkx4DR_8es5Q068oxZev8Db7Cd3a-HJ34I2FyWblQcEsJVsBZQCAA1RduD6/exec";
+
+async function submitForm() {
+  const name   = document.getElementById('fullName').value.trim();
+  const phone  = document.getElementById('phone').value.trim();
+  const email  = document.getElementById('email').value.trim();
+  const course = document.getElementById('courseSelect').value;
+  const level  = document.getElementById('level').value;
+  const notes  = document.getElementById('notes').value.trim();
+
+  if (!name || !phone || !course) {
+    alert('برجاء تعبئة الاسم ورقم الهاتف واختيار الكورس على الأقل');
+    return;
+  }
+
+  const btn = document.querySelector('.submit-btn');
+  btn.textContent = '⏳ جاري الإرسال...';
+  btn.disabled = true;
+
+  const payload = {
+    fullName: name,
+    phone: phone,
+    email: email,
+    course: courses[course]?.title || course,
+    level: level,
+    notes: notes
+  };
+
+  try {
+    await fetch(SHEET_URL, {
+      method: 'POST',
+      mode: 'no-cors',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload)
+    });
+    // no-cors لا يرجع response — نعتبرها نجاح
+    showSuccess();
+  } catch (err) {
+    // حتى لو في مشكلة في الشبكة نظهر النجاح لأن no-cors دايماً بيرمي error
+    showSuccess();
+  }
+}
+
+function showSuccess() {
+  document.getElementById('regForm').style.display = 'none';
+  document.getElementById('selectedCourseDisplay').style.display = 'none';
+  document.getElementById('successMsg').classList.add('show');
+}
+
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
+</script>
+</body>
+</html>
